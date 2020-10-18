@@ -1,6 +1,6 @@
 {%- from "bind/map.jinja" import server with context -%}
 
-{%- for name, zone in server.get('zone', {}).iteritems() %}
+{%- for name, zone in server.get('zone', {}).items() %}
 
 zone "{{ name }}" {
     type {{ zone.get('type', 'master') }};
@@ -41,7 +41,7 @@ zone "{{ name }}" {
 
 {%- if server.get('control') %}
 controls {
-    {%- for name, control in server.control.iteritems() if control.get('enabled', True) %}
+    {%- for name, control in server.control.items() if control.get('enabled', True) %}
     inet {{ control.get('bind', {}).get('address', '127.0.0.1') }} port {{ control.get('bind', {}).get('port', 953) }}
     {%- if control.get('allow') %}
     allow {

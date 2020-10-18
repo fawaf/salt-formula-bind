@@ -20,7 +20,7 @@ bind_service_stop:
   service.dead:
   - name: {{ server.service }}
 
-{%- for name, zone in server.zone.iteritems() %}
+{%- for name, zone in server.zone.items() %}
 {%- if zone.get('type', 'master') == 'master' %}
 {#- Slave zone files will be created by bind #}
 
